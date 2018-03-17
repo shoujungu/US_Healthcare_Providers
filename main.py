@@ -1,6 +1,5 @@
 import pandas as pd
 import flask
-import json
 
 df=pd.read_csv('data.csv')
 
