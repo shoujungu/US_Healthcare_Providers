@@ -1,5 +1,6 @@
 import pandas as pd
 import flask
+import json
 
 df=pd.read_csv('data.csv')
 
@@ -60,13 +61,21 @@ def get_pie_data(state):
     df=df_pie.loc[df_pie['abbv']==state,:]
     label=['None','PTS','SPS','HHAS','PTS+SPS','PTS+HHAS','SPS+HHAS','PTS+SPS+HHAS']
     all_no=df.loc[(df['pts']=='NO')&(df['sps']=='NO')&(df['hhas']=='NO'),:].shape[0]
+    all_no=str(all_no)
     pts=df.loc[(df['pts']=='YES')&(df['sps']=='NO')&(df['hhas']=='NO'),:].shape[0]
+    pts=str(pts)
     sps=df.loc[(df['pts']=='NO')&(df['sps']=='YES')&(df['hhas']=='NO'),:].shape[0]
+    sps=str(sps)
     hhas=df.loc[(df['pts']=='NO')&(df['sps']=='NO')&(df['hhas']=='YES'),:].shape[0]
+    hhas=str(hhas)
     pts_sps=df.loc[(df['pts']=='YES')&(df['sps']=='YES')&(df['hhas']=='NO'),:].shape[0]
+    pts_sps=str(pts_sps)
     pts_hhas=df.loc[(df['pts']=='YES')&(df['sps']=='NO')&(df['hhas']=='YES'),:].shape[0]
+    pts_hhas=str(pts_hhas)
     sps_hhas=df.loc[(df['pts']=='NO')&(df['sps']=='YES')&(df['hhas']=='YES'),:].shape[0]
+    sps_hhas=str(sps_hhas)
     pts_sps_hhas=df.loc[(df['pts']=='YES')&(df['sps']=='YES')&(df['hhas']=='YES'),:].shape[0]
+    pts_sps_hhas=str(pts_sps_hhas)
     data={label[0]:all_no, label[1]:pts, label[2]:sps, label[3]:hhas, label[4]:pts_sps,
          label[5]:pts_hhas,label[6]:sps_hhas, label[7]:pts_sps_hhas}
     return flask.jsonify(data)
