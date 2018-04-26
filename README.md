@@ -1,4 +1,4 @@
-## US Healthcare Providers Data Visualization##
+## US Healthcare Providers Data Visualization
 
 This projects provide several interactive visualization of US Healthcare Providers data, including:
 * Summary of Providers in All States<br>
